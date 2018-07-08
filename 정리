@@ -1,0 +1,9 @@
+프로그램명
+jdk-8u171-windows-x64
+mariadb-10.2.16-winx64
+spring-tool-suite-3.9.5.RELEASE-e4.8.0-win32-x86_64
+
+-- 18.07.08
+1. 프로그램 설치 및 git hub 연동
+2. sts 에 gradle 플러그인 설치
+
