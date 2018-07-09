@@ -16,6 +16,13 @@ spring-tool-suite-3.9.5.RELEASE-e4.8.0-win32-x86_64
 * sts에서 github 접속안되는 원인 (1.7에선 안됨, 1.8에선 됨)
  - 이클립스와 다른거 같음.
 
+2. 샘플 프로젝트 생성
+ - springboottest (프로젝트이름에 _가 들어가면 생성안됨)
+
+3. 샘플 코드 테스트
+ - helloworld출력 (gradle에 기본 dependency만 남겨두고 실행)
+ - run as -> spring app -> http://localhost:8080
+ - com.handashi.HelloRestController.java
 
 
 
