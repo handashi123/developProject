@@ -6,4 +6,16 @@ spring-tool-suite-3.9.5.RELEASE-e4.8.0-win32-x86_64
 -- 18.07.08
 1. 프로그램 설치 및 git hub 연동
 2. sts 에 gradle 플러그인 설치
+3. mariadb 설치 (설치시 utf-8옵션으로 설치)
+
+-- 18.07.09
+1. gradle 플러그인 설치
+ - buildshiop gradle integration -> x 안됨.
+ - sts 에선 dashboard에서 플러그인으로 설치해야함. (extension -> gradle support)
+
+* sts에서 github 접속안되는 원인 (1.7에선 안됨, 1.8에선 됨)
+ - 이클립스와 다른거 같음.
+
+
+
 
