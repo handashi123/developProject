@@ -10,7 +10,7 @@ spring-tool-suite-3.9.5.RELEASE-e4.8.0-win32-x86_64
 
 -- 18.07.09
 1. gradle 플러그인 설치
- - buildshiop gradle integration -> x 안됨.
+ - buildship gradle integration -> x 안됨.
  - sts 에선 dashboard에서 플러그인으로 설치해야함. (extension -> gradle support)
 
 * sts에서 github 접속안되는 원인 (1.7에선 안됨, 1.8에선 됨)
@@ -31,6 +31,13 @@ spring-tool-suite-3.9.5.RELEASE-e4.8.0-win32-x86_64
  - configure -> gradle project로 변경
  - gradle 관련 폴더및 파일, src 폴더 복사
  - spring boot app 기동 시켜 샘플 페이지 테스트
+
+-- 18.07.13
+1. sts 에서 dashboard 여는법
+ - help -> dashboard
+
+2. sts 3.9.5 에서는 gradle이 dashboard에 없다.
+ - buildship gradle integration 설치후 gradle ide pack 3.8x 설치
 
 
 
