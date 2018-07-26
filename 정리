@@ -39,6 +39,15 @@ spring-tool-suite-3.9.5.RELEASE-e4.8.0-win32-x86_64
 2. sts 3.9.5 에서는 gradle이 dashboard에 없다.
  - buildship gradle integration 설치후 gradle ide pack 3.8x 설치
 
+-- 18.07.26
 
+1. jpa 설정
+ - 메모리상에 올라가는 DB같이 사용할수 있는 데이터 입출력 모듈
+ - compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-jdbc')
+	runtime('com.h2database:h2')
+ - @Entity : 테이블로 보면 됨
+ - @Id : pk
+ - @GenerateValue : 자동생성값
 
 
