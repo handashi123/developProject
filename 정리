@@ -50,4 +50,68 @@ spring-tool-suite-3.9.5.RELEASE-e4.8.0-win32-x86_64
  - @Id : pk
  - @GenerateValue : 자동생성값
 
+참고 URL : 
+http://millky.com/@origoni/post/1140
+https://jdm.kr/blog/121
+
+-- 18.07.27
+
+1. 프로젝트 폴더 구조
+ - WebContent, webapp 의 차이
+ - WebContent의 경우 이클립스에서 만들어지는 방식
+ - webapp의 경우 maven에서 만들어지는 방식
+ - 개발자간의 호환성을 위해 webapp 방식 사용
+ - 이클립스에선 직접 폴더 만들어야 함.
+ - src : 프로그램 소스 파일을 두는 곳
+ - main/java : 자바 소스 파일(.java파일)을 두는 곳
+ - main/resources : 프로그램을 실행할 때 사용하는 설정 파일(.properties, .xml 등)을 두는 곳
+ 
+ - 직접 만들어야 함. * main/webapp : HTML, CSS, JavaScript, GIF 등 정적 웹 자원을 두는 곳. (JSP파일도 여기에 둠)
+ - 직접 만들어야 함. * main/webapp/WEB-INF : 웹 애플리케이션 정보 파일을 두는 곳
+ 
+ - test : 코드를 테스트하는 소스 파일을 두는 곳
+ - test/java : 단위 테스트 관련 자바 소스 파일을 두는 곳
+ - bin : 소스코드가 컴파일된 *.class 파일, *properties파일, *xml파일 등
+
+2. 이클립스 html5 기본세팅
+ - preferences -> Web -> JSP Files -> Editor -> Template -> New
+ - jsp for HTML5
+<%@ page language="java" contentType="text/html; charset=${encoding}" pageEncoding="${encoding}"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=${encoding}">
+<title>Insert title here</title>
+</head>
+<body>
+
+${cursor}
+
+</body>
+</html>
+ - 기본생성 되는 jsp 파일 UTF-8로 기본세팅
+ - preferences -> Web -> JSP Files
+ - UTF-8로 변경
+
+3. 이클립스에서 tab대신 space사용
+ - preferences -> General -> Editors -> Text Editor -> Insert spaces for tabs 체크
+ - preferences -> Java -> Code Style -> formatter -> New (새로운 fomatter 생성) -> Indentation -> space Only로 변경
+
+4. spring jsp 사용하기
+ 1) 관련 dependency 추가
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('javax.servlet:jstl')
+    providedCompile('org.apache.tomcat.embed:tomcat-embed-jasper')
+ 1) HelloController.java 생성 (/hello 전달받아 name에 값추가해서 view로 넘김)
+  - src/main/resources/application.yml 생성
+  - 새버전에서는 뷰 매핑을 spring:mvc:view: 로 사용한다. *****************
+ 2) hello.jsp (전달받은값을 표시)
+
+5. spring velocity 사용하기
+ 1) jsp 관련 라이브러리 주석처리
+ 2) html 파일 생성후 vm으로 변경
+--- 잘안됨.
+
+
+
 
