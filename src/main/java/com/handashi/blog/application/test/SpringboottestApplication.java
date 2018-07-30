@@ -1,4 +1,4 @@
-package com.handashi;
+package com.handashi.blog.application.test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
