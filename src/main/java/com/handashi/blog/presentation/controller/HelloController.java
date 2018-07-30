@@ -13,5 +13,8 @@ public class HelloController {
 		System.out.println("---");
 		return "hello";
 	}
-	
+	@RequestMapping("/blog")
+	public String blog(Model model){
+	    return "blog";
+	}
 }
