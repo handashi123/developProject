@@ -1,0 +1,156 @@
+#!/bin/sh
+if [ $# -eq 0 ] ; then
+  echo "execute ./javaJob.sh className otption:$1, option:$2 ..."
+  exit
+fi
+
+LANG=ko_KR.eucKR; export LANG
+JAVA_HOME=/usr/java/jdk-1.7.0
+
+if [ -z "$JAVA_HOME" ] ; then
+        echo "You must set JAVA_HOME to point at your JDK installation"
+        exit
+fi
+
+if [ ! -f "$JAVA_HOME/bin/java" ] ; then
+        echo "Cannot find java executable file in $JAVA_HOME/bin"
+        echo "Please check your JAVA_HOME setting"
+fi
+
+BATCH_HOME=/weblogic/batch
+LIB_HOME=$BATCH_HOME/lib
+
+source /weblogic/batch/bin/conf/classpath.conf
+
+HOSTNAME=$(hostname)
+echo "hostname is $HOSTNAME"
+
+if [ "$HOSTNAME" = "devwas" ]
+then
+    IFHUB_HOST="dev"
+    SEARCH_TYPE="dev"
+    SERVER_TYPE="dev"
+elif [ "$HOSTNAME" = "devstwas" ]
+then
+    IFHUB_HOST="staging"
+    SEARCH_TYPE="dev"
+    SERVER_TYPE="stage"
+else
+    IFHUB_HOST="real"
+    SEARCH_TYPE="real"
+    SERVER_TYPE="real"
+fi
+
+echo $JAVA_HOME/bin/java -Djava.library.path=/data1/www/solution/key/lib/ -DdbcacheServer.type=real -Difhub.name=${IFHUB_HOST} -DsearchType=real -classpath $CLASSPATH $1 $2 $3 $4 $5
+
+$JAVA_HOME/bin/java  -Djava.library.path=/data1/www/solution/key/lib/ -Difhub.name=${IFHUB_HOST} -Dserver.type=real -DdbcacheServer.type=real -DsearchType=real -Xmx1024m -classpath $CLASSPATH  $1 $2 $3 $4 $5
+sleep 2
+
+############################################################################################################
+if [ $# -eq 0 ] ; then
+  echo "execute ./javaJob.sh className otption:$1, option:$2 ..."
+  exit
+fi
+
+LANG=ko_KR.eucKR; export LANG
+JAVA_HOME=/usr/java/jdk-1.7.0
+
+if [ -z "$JAVA_HOME" ] ; then
+        echo "You must set JAVA_HOME to point at your JDK installation"
+        exit
+fi
+
+if [ ! -f "$JAVA_HOME/bin/java" ] ; then
+        echo "Cannot find java executable file in $JAVA_HOME/bin"
+        echo "Please check your JAVA_HOME setting"
+fi
+
+BATCH_HOME=/weblogic/batch
+LIB_HOME=$BATCH_HOME/lib
+
+CLASSPATH=$BATCH_HOME/classes
+CLASSPATH=$CLASSPATH:$BATCH_HOME/resources
+CLASSPATH=$CLASSPATH:$LIB_HOME/NGcPClientModule.jar
+CLASSPATH=$CLASSPATH:$LIB_HOME/poi-3.0.1-FINAL-20070705.jar
+
+HOSTNAME=$(hostname)
+echo "hostname is $HOSTNAME"
+
+if [ "$HOSTNAME" = "devwas" ]
+then
+    IFHUB_HOST="dev"
+elif [ "$HOSTNAME" = "devstwas" ]
+then
+    IFHUB_HOST="staging"
+else
+    IFHUB_HOST="real"
+fi
+
+echo $JAVA_HOME/bin/java -Difhub.name=${IFHUB_HOST} -classpath $CLASSPATH skt.tmall.process.executor.ProcedureExecutorBI $1 $2
+
+$JAVA_HOME/bin/java -Difhub.name=${IFHUB_HOST} -classpath $CLASSPATH skt.tmall.process.executor.ProcedureExecutorBI "$1" "$2"
+sleep 2
+
+##########################################################################################
+
+
+if [ $# -eq 0 ] ; then
+  echo "execute ./javaJob.sh className otption:$1, option:$2 ..."
+  exit
+fi
+
+LANG=ko_KR.eucKR; export LANG
+JAVA_HOME=/app/jdk1.8.0_141
+
+if [ -z "$JAVA_HOME" ] ; then
+        echo "You must set JAVA_HOME to point at your JDK installation"
+        exit
+fi
+
+if [ ! -f "$JAVA_HOME/bin/java" ] ; then
+        echo "Cannot find java executable file in $JAVA_HOME/bin"
+        echo "Please check your JAVA_HOME setting"
+fi
+
+BATCH_HOME=/weblogic/batch
+LIB_HOME=$BATCH_HOME/lib
+
+source /weblogic/batch/bin/conf/classpath.conf
+
+HOSTNAME=$(hostname)
+echo "hostname is $HOSTNAME"
+
+if [ "$HOSTNAME" = "devwas" ]
+then
+    IFHUB_HOST="dev"
+    SEARCH_TYPE="dev"
+    SERVER_TYPE="dev"
+elif [ "$HOSTNAME" = "devstwas" ]
+then
+    IFHUB_HOST="staging"
+    SEARCH_TYPE="dev"
+    SERVER_TYPE="stage"
+else
+    IFHUB_HOST="real"
+    SEARCH_TYPE="real"
+    SERVER_TYPE="real"
+fi
+
+echo $JAVA_HOME/bin/java -Djava.library.path=/weblogic/batch/lib3/ -DdbcacheServer.type=real -Difhub.name=${IFHUB_HOST} -DsearchType=real -classpath $CLASSPATH $1 $2 $3 $4 $5
+
+$JAVA_HOME/bin/java  -Djava.library.path=/weblogic/batch/lib3/ -Difhub.name=${IFHUB_HOST} -Dserver.type=real -DdbcacheServer.type=real -DsearchType=real -Xmx1024m -classpath $CLASSPATH  $1 $2 $3 $4 $5
+sleep 2
+
+
+
+################################################################################
+classpath.conf
+
+CLASSPATH=$BATCH_HOME/classes
+CLASSPATH=$CLASSPATH:$BATCH_HOME/resources
+
+CLASSPATH=$CLASSPATH:$LIB_HOME/jsch-0.1.44.jar
+
+
+
+

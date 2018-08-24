@@ -1,0 +1,203 @@
+* lombok 설정
+lombok.jar 를 실제 파일에 가서 java -jar lombok.jar 실행시켜서 이클립스 경로 주고 설정
+
+* remote system exploror opertaion 계속 생길경우
+eclipse -> Preferences -> General -> Startup and Shutdown - Uncheck RSE UI
+   Remote Systems - Uncheck Re-open  Remote Systems view to previous state
+   
+* 윈도우 링크거는 법
+mklink /d css D:\skplanet\workspace_mars\02.front-static\css
+
+------------------------------------------------------------------------------
+xml parser 오류
+
+node.getTextContent()
+
+1. 프로젝트 Build Path > Order and Export
+2. JRE System Library 선택 > TOP 
+3. OK 후 빌드
+------------------------------------------------------------------------------
+maven 빌드
+
+maven -> update project
+
+Run As -> build maven -> compile -> run
+------------------------------------------------------------------------------
+eclipse에서 서버생성시 오류
+C:\workspace-sts\.metadata\.plugins\org.eclipse.core.runtime\.settings\
+다음 파일 삭제하면 된다는..
+org.eclipse.wst.server.core.prefs
+org.eclipse.jst.server.tomcat.core.prefs
+------------------------------------------------------------------------------
+메모리 모자라 빌드 실패시
+01.domain
+ - pom.xml
+<fork>true</fork>
+<meminitial>2048m</meminitial>
+<maxmem>4096m</maxmem>
+ - build.gradle
+[compileJava, compileTestJava]*.options*.fork (memoryMaximumSize: '4096m')
+------------------------------------------------------------------------------
+maven 무한컴파일시
+
+이클립스를 종료한다.(종료 전 Build Automatically 체크 해제)
+원인이 발생하는 프로젝트의 WorkSpace로 이동
+프로젝트 명 하위 폴더에 .project 파일을 주목
+해당 파일을 편집기로 오픈
+아래와 같은 내용을 삭제한다.
+
+<buildCommand> <name>org.eclipse.m2e.core.maven2Builder</name> </buildCommand>
+------------------------------------------------------------------------------
+maven 에서 classifier 때문에 빌드 실패시
+
+<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>${service}</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+------------------------------------------------------------------------------
+ejs 구문 색깔 입히기
+preperences -> General -> editor -> File Assocciations -> Content Type (html로 해야함)
+------------------------------------------------------------------------------
+콘솔 한글깨짐 해결
+
+Run -> Run configurations -> common -> UTF-8
+------------------------------------------------------------------------------
+@transaction 을 사용하려면 mybatis의 경우 SqlsessionFactoryBean 에 
+@EnableTransactionmanagement 를 선언해줘야함.
+------------------------------------------------------------------------------
+Mybatis에서 여러행 수정
+ - vo 를 list에 담고 다시 map에 담아 mybatis에서 foreach 사용해서 반복.
+ - maybatis는 map안에 list를 인식해서 foreach사용 가능.
+------------------------------------------------------------------------------
+gradle wrapper 사용법
+
+gradle 설치후
+gradle wrapper : wrapper 생성
+gradlew wrapper : gradle-wrapper.properties 에서 설정된 환경으로 구성
+ - gradle-wrapper.jar를 다시 받는다.
+ - properties 도 변경되기 때문에 다시 수정
+------------------------------------------------------------------------------
+디렉토리별 용량 확인
+du -h --max-depth=1
+------------------------------------------------------------------------------
+* tmbatch1 에서 파일 추출
+scp weblogic@tmbatch1:/weblogic/batch/classes171016.tar /weblogic
+mv classes171016.tar /home/share/classes171016.tar
+
+* xdeploy로 파일 전송
+scp classes171016.tar weblogic@xdeploy01:/home/share
+------------------------------------------------------------------------------
+dir /a-D /b/s > tmbatch1_origin
+
+dir *.properties /a-D /b/s > 171220_properties
+------------------------------------------------------------------------------
+프로세스로 pid 알아내기
+
+pgrep -f 프로세스명
+------------------------------------------------------------------------------
+git branch 삭제
+bugfix/MPSR-15576-x-site2
+
+git push origin --delete bugfix/MPSR-15576-x-site2
+
+git push origin --delete <branch1> <branch2> <branch3>
+------------------------------------------------------------------------------
+host에 있는 정보를 known_hosts에 등록 (weblogic/.ssh/)
+ssh-keyscan vmmval1 2>&1 | grep -v ^# >> ~/.ssh/known_hosts
+ssh-keyscan xdevtebrc 2>&1 | grep -v ^# >> ~/.ssh/known_hosts
+------------------------------------------------------------------------------
+web 서버 권한문제 발생시
+
+find . -type d -exec chmod 775 {} \;
+------------------------------------------------------------------------------
+cat /app/apache/conf/extra/httpd-vhosts.conf
+
+------------------------------------------------------------------------------
+jad 사용법
+jad -o -sjava 파일명.class
+
+디렉토리
+jad -r -sjava -d decom_after .\after\**\*.class
+------------------------------------------------------------------------------
+순서 분석
+
+1. /admin/user-setting
+
+2. route.js
+.state('user-setting', {
+            url : '/admin/user-setting',
+            templateUrl : '/public/views/user/user-setting.html'
+        })
+
+3. user-setting.html
+<section data-ng-controller="UserSettingController" data-ng-init="init()">
+
+4. user-setting.js
+angular.module('deploy').controller('UserSettingController', function($scope, $http, $timeout, $state, menu){
+
+$http.get("/api/user")
+
+5. 
+------------------------------------------------------------------------------
+angular 정리
+
+1. html 화면에서 data-ng-controller 에서 정의한 controller로 이동.
+ - angular.module('deploy').controller('JarvisSettingController', function($scope, $http, $modal, JarvisProject, $filter){
+  
+2. controller로 이동시 파라미터로 service나 factory 선언된것을 넘길수 있다.
+ - angular.module('deploy').factory('deployModalService', function(viewLoader){
+
+------------------------------------------------------------------------------
+
+프레임워크 : spring boot
+프로퍼티 : application.yml
+
+HomeController 시작
+ - 로그인 안되어 있으면 /login
+ - 로그인 되어있으면 home
+
+LoginController 로그인
+ - jira, bitbucket 인증정보 받아옴.
+ - spring security 권한 처리
+ - userRoles 내림
+ - home으로 이동
+
+home.jsp
+ - dashboard app 부터 화면
+ - menu.html
+ - routes.js -> /public/views/index.html
+ - init.js -> introJs('#page-wrapper');
+
+html에서 controller로 이동해서 읽음.
+
+------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

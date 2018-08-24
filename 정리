@@ -136,4 +136,5 @@ ${cursor}
  - compile ('org.webjars.bower:origoni-startbootstrap-clean-blog:1.0.3')
  - 추가후 blog.jsp 생성 (이미지의 경우 오래되어서 404에러 발생)
 
-
+-- 18.08.24
+two -> one
