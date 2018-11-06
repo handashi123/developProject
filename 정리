@@ -145,3 +145,12 @@ two -> one
  - Window -> Preferences -> Team -> SVN -> SVN Connector : Get Connectors...
    SVN Kit 1.8.14 설치후 재시작
 
+2. RestTemplate 을 이용해서 api 호출 가능
+ - 파라미터의 경우 restTemplate.getForObject("http://localhost:8080/getHelloList/{num}", String.class, num); 뒤에 복수로도 붙여줄수 있다.
+
+3. json 변환
+ - json to map
+   HashMap<String, Object> rs = new ObjectMapper().readValue(result.toString(), HashMap.class);
+   map to json
+   new ObjectMapper().writeValueAsString(rs);
+ 
