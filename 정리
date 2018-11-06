@@ -138,3 +138,10 @@ ${cursor}
 
 -- 18.08.24
 two -> one
+
+-- 18.11.06
+1. sts 에 svn 설치
+ - eclipse maketplace : SVN Team Provider 4.0.5 설치후 재시작
+ - Window -> Preferences -> Team -> SVN -> SVN Connector : Get Connectors...
+   SVN Kit 1.8.14 설치후 재시작
+

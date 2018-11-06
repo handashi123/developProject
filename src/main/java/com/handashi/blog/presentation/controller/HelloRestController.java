@@ -1,5 +1,6 @@
 package com.handashi.blog.presentation.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,28 @@ public class HelloRestController {
 		
 		return helloList;
 		
+	}
+	
+	//hello json test
+	@RequestMapping("/helloList")
+	public List<Hello> helloList(Model model){
+		
+		List<Hello> helloList = new ArrayList<Hello>();
+		
+		Hello h1 = new Hello();
+		Hello h2 = new Hello();
+		
+		h1.setId(1);
+		h1.setName("name1");
+		
+		h2.setId(2);
+		h2.setName("name2");
+		
+		helloList.add(h1);
+		helloList.add(h2);
+		
+		
+		return helloList;
 	}
 	
 	@RequestMapping("/")
