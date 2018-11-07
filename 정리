@@ -154,3 +154,13 @@ two -> one
    map to json
    new ObjectMapper().writeValueAsString(rs);
  
+ -- 18.11.07
+ 1. mybatis에서 resultType 의 vo경로를 @Alias("별명") 으로 사용할수 있다.
+  - application.yml에 type-aliases-package: co.kr.lguplus 선언은 해야함.
+  
+ 2. jackson json 사용법
+  - https://www.lesstif.com/pages/viewpage.action?pageId=24445183
+ 
+ 3. @JsonProperty 사용법
+  - vo에서 json과 파라미터 값이 다를경우 JsonProperty("파라미터") 를 선언해주면 그값으로 받거나 되돌려줄수 있다.
+ 

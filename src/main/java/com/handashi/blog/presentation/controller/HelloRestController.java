@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.handashi.blog.domain.model.entity.Hello;
+import com.handashi.blog.domain.model.entity.HelloJsonVo;
 import com.handashi.blog.infrastructure.dao.HelloDao;
 
 @RestController
@@ -110,11 +111,16 @@ public class HelloRestController {
 		
 		try {
 			// json to map
-			HashMap<String, Object> rs = new ObjectMapper().readValue(result.toString(), HashMap.class);
+//			HashMap<String, Object> rs = new ObjectMapper().readValue(result.toString(), HashMap.class);
+//			System.out.println(rs.toString());
 			
-			System.out.println(rs.toString());
+			// json to vo
+			HelloJsonVo helloJsonVo = new ObjectMapper().readValue(result.toString(), HelloJsonVo.class);
+			System.out.println(helloJsonVo.toString());
+			retVal = new ObjectMapper().writeValueAsString(helloJsonVo);
+			
 			// map to json
-			retVal = new ObjectMapper().writeValueAsString(rs);
+//			retVal = new ObjectMapper().writeValueAsString(rs);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
