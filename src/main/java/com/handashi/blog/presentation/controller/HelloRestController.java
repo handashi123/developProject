@@ -2,8 +2,8 @@ package com.handashi.blog.presentation.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.handashi.blog.domain.model.entity.Hello;
+import com.handashi.blog.domain.model.entity.HelloJsonSubVo;
 import com.handashi.blog.domain.model.entity.HelloJsonVo;
 import com.handashi.blog.infrastructure.dao.HelloDao;
 
@@ -128,6 +131,41 @@ public class HelloRestController {
 		}
 		
 		return retVal;
+	}
+	
+	// hello json vo test
+	@RequestMapping("/getJsonSubVo")
+	public HelloJsonSubVo getJsonSubVo() {
+				
+		RestTemplate restTemplate = new RestTemplate();
+		String result = restTemplate.getForObject("http://localhost:8080/getHelloList/{num}", String.class, 1);
+		
+		HelloJsonSubVo subVo = new HelloJsonSubVo();
+		try {
+//			subVo = new ObjectMapper().readValue(result.toString(), HelloJsonSubVo.class);
+			ObjectMapper mapper = new ObjectMapper() ;
+			Map<String, Object> map =  mapper.readValue(result, new TypeReference<Map<String, Object>>() {});
+			System.out.println(map);
+			
+			subVo.setHelloName("이름1");
+			subVo.setHelloValue("값1");
+			
+			// json node로 받는 방법
+			JsonNode jsonNode = mapper.readTree(result);
+			subVo.setHelloJson(jsonNode);
+			
+			System.out.println("2 : " + jsonNode);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(subVo);
+		
+		return subVo;
+		
+		
 	}
 	
 }

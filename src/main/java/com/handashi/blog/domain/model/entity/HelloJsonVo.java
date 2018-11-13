@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class HelloJsonVo {
 	@JsonProperty("id")
-	int memberNum;
+	private int memberNum;
 	
 	@JsonProperty("name")
-	String memberName;
+	private String memberName;
 
 	public int getMemberNum() {
 		return memberNum;

@@ -164,3 +164,21 @@ two -> one
  3. @JsonProperty 사용법
   - vo에서 json과 파라미터 값이 다를경우 JsonProperty("파라미터") 를 선언해주면 그값으로 받거나 되돌려줄수 있다.
  
+ -- 18.11.13
+ 1. json -> vo
+ - ObjectMapper 로 json 문자열을 넣어 vo에 넣으면 하위 vo까지 전부 자동으로 들어감
+ - 만약 빈값이 들어올 확률이 있는 항목이 있다면 @JsonInclude(Include.NON_NULL) 변수위에
+   선언해 주면 됨.
+   
+ RestTemplate restTemplate = new RestTemplate();
+ ClovaExtensionRequestDto clovaExtensionRequestDto = new ClovaExtensionRequestDto();
+			ObjectMapper mapper = new ObjectMapper();
+		String retVal = restTemplate.getForObject("http://localhost:8080/jsonVoTest", String.class);
+		clovaExtensionRequestDto = mapper.readValue(retVal, ClovaExtensionRequestDto.class);
+		System.out.println("전체 : " + clovaExtensionRequestDto.toString());
+		
+자동으로 json -> vo 로 들어감
+		
+new ObjectMapper().readValue(jsonNode.path("session").path("user").toString(), UserDto.class);
+
+해당 json 노드만 가지고 올수도 있다.
