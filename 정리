@@ -182,3 +182,15 @@ two -> one
 new ObjectMapper().readValue(jsonNode.path("session").path("user").toString(), UserDto.class);
 
 해당 json 노드만 가지고 올수도 있다.
+
+ -- 18.11.15
+ 1.공통예외 처리 
+  - Exception <- BaseException <- CustomException1
+  - ExceptionTestController 여기서 예외 발생시킴
+  - GlobalExceptionHandler : 공통예외처리
+    @ControllerAdvice : 공통 예외 (전체 컨트롤러)
+    @Order(Ordered.HIGHEST_PRECEDENCE) 우선순위 최상위
+    @RestController : api 로 리턴 (json)
+    메소드
+    @ExceptionHandler(Exception.class) : Exception은 전부 여기서 처리
+    new ResponseEntity<>(e, HttpStatus.BAD_REQUEST); : https status 예외처리 발생 (e에 담아 리턴하니 전체 오류메시지가 json으로 리턴됨
