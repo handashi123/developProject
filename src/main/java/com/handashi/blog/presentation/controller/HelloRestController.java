@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -168,4 +171,32 @@ public class HelloRestController {
 		
 	}
 	
+/*	@RequestMapping(value = "/refTest/{className}", method = RequestMethod.POST)
+	public String reflectionTest(@PathVariable String className) {
+		
+		String retVal = "";
+		
+		System.out.println("className : " + className);
+		
+//		HelloJsonSubVo
+		
+		try {
+			
+			WebApplicationContext context = ContextLoader.getCurrentWebApplicationContext();
+			Class cls = context.getBean(className).getClass();
+			System.out.println("--- ' " + cls.toString());
+//			 Class.forName(className);
+//			Class<?> testClass = Class.forName(className);
+//			Object newObj = testClass.newInstance();
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return retVal;
+	}
+*/	
 }

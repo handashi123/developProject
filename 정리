@@ -194,3 +194,50 @@ new ObjectMapper().readValue(jsonNode.path("session").path("user").toString(), U
     메소드
     @ExceptionHandler(Exception.class) : Exception은 전부 여기서 처리
     new ResponseEntity<>(e, HttpStatus.BAD_REQUEST); : https status 예외처리 발생 (e에 담아 리턴하니 전체 오류메시지가 json으로 리턴됨
+    
+    
+-- 18.11.19
+aspectj 정리
+포인트컷 표현식
+execution(*io.icednut.spring.exercise..*Impl.get*(..))
+execution(	*	io.icdenut.spring.exercise..	*Impl	.	get*(..)	)
+ 	리턴타입	패키지경로	클래스명	 	메소드명 매개변수	 
+리턴 타입
+타입	설명
+*	모든 리턴타입허용
+void	리턴타입 void인 메소드 선택
+!void	void가 아닌 메소드 선택
+패키지 경로
+패키지경로	설명
+io.icednut.spring.exercise	정확하게 패키지 선택
+io.icednut.spring.exercise..	패키지로 시작하는 모든 패키지 선택
+io.icednut.spring..impl	io.icednut.spring으로 시작하면서 마지막 패키지 이름이 Impl로 끝나는 패키지 선택
+클래스명
+클래스명	설명
+BoardServiceImpl	정확한 클래스 선택
+*Impl	이름이 Impl로 끝나는 클래스 선택
+BoardService+	해당 클래스로 파생된 모든 자식 클래스 선택, 인터페이스 구현 된 모든 클래스 선택
+메소드명, 매개변수
+메소드명, 매개변수	설명
+*	모든 메소드 선택
+get*(..)	이름이 get으로 시작하는 모든 메소드 선택
+
+-- 18.11.21
+request -> filter -> interceptor -> controller
+
+1. 필터는 요청이 처음 들어왔을경우 걸러준다.
+2. 인터셉터는 컨트롤러로 가기전 걸러준다.
+3. aop는 인터셉터 후 걸러줒다.
+4. 응답은 필터제외하고 역순
+
+-- 18.11.22
+@JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME) 를 붙여주면 자동으로 이름이 json에 등록
+
+객체를 json으로 리턴할경우 vo선언한대로 json으로 리턴된다.
+그런데, name, value 구조로 되어있을경우 클래스명이 표현되지 않는다.
+map에 name, 객체로 넣어두고 출력해보니 일단 잘 출력된다.
+
+
+
+
+
