@@ -237,6 +237,12 @@ request -> filter -> interceptor -> controller
 그런데, name, value 구조로 되어있을경우 클래스명이 표현되지 않는다.
 map에 name, 객체로 넣어두고 출력해보니 일단 잘 출력된다.
 
+-- 18.11.23
+
+vo를 잘 만들면 자동 매핑 된다.
+ApiTestController
+ApiTestVo
+ApiTestSubListVo
 
 
 
