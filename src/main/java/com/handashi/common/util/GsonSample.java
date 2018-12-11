@@ -12,10 +12,15 @@ public class GsonSample {
 
 		String tempJson = "{\r\n" + "	\"custList\": [{\r\n" + "		\"seq\": \"1\",\r\n" + "		\"custNm\": \"홍길동\"		\r\n" + "	},\r\n"
 				+ "	{\r\n" + "		\"seq\": \"2\",\r\n" + "		\"custNm\": \"임꺽정\"		\r\n" + "	},\r\n" + "	{\r\n"
-				+ "		\"seq\": \"3\",\r\n" + "		\"custNm\": \"아무개\"		\r\n" + "	}]\r\n" + "}";
+				+ "		\"seq\": \"3\",\r\n" + "		\"custNm\": \"김길동\"		\r\n" + "	}]\r\n" + "}";
 
 		JsonObject jsonObject = new Gson().fromJson(tempJson, JsonObject.class);
 		JsonArray jsonArray = jsonObject.getAsJsonArray("custList");
+
+		jsonObject.addProperty("testName", "이름");
+
+		System.out.println(jsonObject.getAsJsonObject());
+		System.out.println("--- " + jsonObject.has("custList"));
 
 //		String[] arrName = new Gson().fromJson(jsonArray, String[].class);
 
@@ -31,12 +36,14 @@ public class GsonSample {
 		}
 
 		//----------------------------------------------------------
-		// Gson 을 이용해 Json 만들기
-		// JsonObject 에 추가해서 만들면 된다. List나 다른 객체도 되는것 같다.
+
 		Gson gson = new Gson();
 		JsonObject obj = new JsonObject();
 //		obj.add("jsonList", jsonArray);
 		obj.addProperty("name", "list1");
+
+		JsonArray jsonArray2 = new JsonArray();
+
 		obj.add("array1", jsonArray);
 
 		System.out.println("obj : " + obj.toString());

@@ -264,7 +264,12 @@ connect / as sysdba
  Gson을 이용한 Json 파싱
   - GsonSample 작성
 
+
+-- 18.12.11
+ 1. JsonObject 로 json을 파싱하고
+   JsonObject를 컨트롤 할수 있다. JsonArray 로 배열 사용
  
+ 2. String 배열을 Arrays.asList(배열).contains("찾을값") 으로 사용할수 있다.
  
  
  
