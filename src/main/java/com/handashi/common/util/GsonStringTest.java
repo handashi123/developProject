@@ -40,10 +40,28 @@ public class GsonStringTest {
 		System.out.println("5: " + retJson);
 		
 		// 한방에 파싱
+//		jsonObject = new JsonObject();	
+//		jsonObject.addProperty("data", "");
+//		System.out.println(!jsonObject.has("data"));
+		System.out.println(jsonObject.toString());
+//		System.out.println(jsonObject.get("data").isJsonNull());
+		
+		
 		JsonObject firstJson = new JsonObject();
+		
+		if("".equals(new Gson().fromJson(jsonObject, JsonObject.class).get("data").getAsString())) {
+			System.out.println("빈값");
+		}
+		System.out.println("get : " + new Gson().fromJson(new Gson().fromJson(jsonObject, JsonObject.class).get("data").getAsString(), JsonObject.class).get("num").toString());
+		
 		firstJson.add("data", new Gson().fromJson(new Gson().fromJson(jsonObject, JsonObject.class).get("data").getAsString(), JsonObject.class));
 		
-		System.out.println("6: " + firstJson);
+		System.out.println("6: " + firstJson.toString());
+		
+		// data 확인
+		String tempString = new Gson().fromJson(jsonObject, JsonObject.class).get("data").getAsString();
+		System.out.println("7: " + tempString);
+		
 	}
 
 }
