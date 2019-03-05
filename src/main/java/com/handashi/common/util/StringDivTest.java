@@ -65,6 +65,10 @@ public class StringDivTest {
 		System.out.println(opt3.toString());
 		System.out.println(opt4.toString());
 		
+		System.out.println("replace 테스트");
+		String stVal = "Clova.YesIntent";
+		System.out.println(stVal.replace(".", ""));
+		
 	}
 
 }

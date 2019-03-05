@@ -7,8 +7,10 @@ public class GsonNullTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String tempJson = "{\"data\":{}}";
+		String tempJson = "{\"data\":{\"\":\"\"}}";
 //		String tempJson = "123";
+		
+		System.out.println(new Gson().fromJson(tempJson, JsonObject.class).isJsonObject());
 		
 		new Gson().fromJson(tempJson, JsonObject.class).has("data");
 		
