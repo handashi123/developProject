@@ -13,6 +13,8 @@ import java.util.Iterator;
 
 public class htmlParserTest {
 
+	private static long lastModified = 0L;
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		StringBuilder stBuilder = new StringBuilder();
@@ -48,6 +50,18 @@ public class htmlParserTest {
 			
 //			BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream("C:\\study\\workspace\\developProject\\src\\main\\webapp\\mailSample\\mailTemplateSample1.html"), "UTF8"));
 			BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(url.getFile()), "UTF8"));
+			
+			// 파일이 수정되지 않으면 기존 정보를 로드
+			File file = new File(url.getPath());
+			if(lastModified != file.lastModified()) {
+				lastModified = file.lastModified();
+				System.out.println("1번째 날짜 비교 : " + lastModified);
+			}
+			
+			if(lastModified != file.lastModified()) {
+				lastModified = file.lastModified();
+				System.out.println("2번째 날짜 비교 : " + lastModified);
+			}
 			
 			String str = "";
 			

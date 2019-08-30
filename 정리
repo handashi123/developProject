@@ -284,6 +284,25 @@ connect / as sysdba
  1. 불필요 루트나 불필요 파일에 접근하게 하고 싶지 않다면 was의 경우 web.xml 에 security-constraint 설정을
      하면된다.
 
+ -- 19.08.28
+ 1. ENUM 공부
+  - ENUM 클래스 활용
+  - 데이터를 읽어올때 코드들이나 같이 세트로 움직이는 값들을 한번에 계산할수 있다.
+  - ex) 상품코드와 판매가만 있을경우, 상품명, 원가, 부가세 등은 실제로 다른 데이터에서 읽어와야 되는경우가 있는데
+          enum 으로 관리하게 되면 enum 클래스만 보고 유추할수 있다.
+          그런데 기존 legacy 들은 db로 보통 관리하기 때문에 enum클래스를 사용할일이 많지 않을것 같다.
+          신규일때는 다를것 같음
+  
+ 2. html 이메일 내용 파싱
+  - 이메일의 내용이 html일경우 String 으로 만드는건 알아보기 힘드므로 html 파일을 읽어 변환되는부분들만 변환해주게
+    개발
+    이메일을 보낼때마다 파일을 읽어 파싱하게 되면 성능상 좋지 않을것 같다. 
+   파일을 읽을때 변경이 되지 않았다면 캐시에 올리는게 나을듯
+   
  
  
-
+-- 19.08.29
+1. docker
+ - 설치
+https://steemit.com/kr/@mystarlight/docker
+https://docs.docker.com/toolbox/toolbox_install_windows/
