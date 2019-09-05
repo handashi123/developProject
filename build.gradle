@@ -31,9 +31,11 @@ configurations {
 dependencies {
 	//compile fileTree(dir: 'src/main/webapp/WEB-INF/lib', include: '*.jar')
     // jsp setting
-    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-web'){
+    	// exclude ('org.jvnet.mimepull:mimepull')
+    }
     compile('javax.servlet:jstl')
-    providedCompile('org.apache.tomcat.embed:tomcat-embed-jasper')	
+    providedCompile('org.apache.tomcat.embed:tomcat-embed-jasper')    
 	
 	// spring data lib
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
@@ -59,8 +61,16 @@ dependencies {
 	// add library
 	compile ('com.google.code.gson:gson:2.8.0')
 	
+	// xmltojson 19.09.05
+	compile 'org.json:json:20190722'
+	
+	// add jackson 19.09.05
+	//compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+	
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
-	testCompile('org.springframework.boot:spring-boot-starter-test')	
+	testCompile('org.springframework.boot:spring-boot-starter-test'){
+		exclude group:"com.vaadin.external.google", module: "android-json"
+	}	
 }
 
 //webAppDirName = 'webapp'
