@@ -306,3 +306,26 @@ connect / as sysdba
  - 설치
 https://steemit.com/kr/@mystarlight/docker
 https://docs.docker.com/toolbox/toolbox_install_windows/
+
+-- 19.09.02
+
+1. sh, bat 설정
+ - linux에서 export 명령으로 설정되어있는것을 볼수 있고, sh파일에서 export 로 변수 설정할수 있다.
+   ex) export APP_HOME=/app/tomcat
+        ${APP_HOME}/lib
+
+ - window에서 set 명령으로 export 같이 사용할수 있다.
+   ex) SET APP_HOME=C:\eclipse\workspace\sqlLoader
+        %APP_HOME%\lib
+        
+ - linux에서 DATE 명령은 날짜관련 명령이고, 변수로 $DATE 로 sh 안에서 사용가능
+ - window에서 빈칸이 들어간 경로면 ""안에 넣어주면 된다.
+ 
+ -- 19.09.05
+ 
+ 1. xml 에서 json 으로 파싱하는 라이브러리
+  - compile 'org.json:json:20190722'
+  - org.springframework.boot:spring-boot-starter-test 와 충돌발생
+  - exclude group:"com.vaadin.external.google", module: "android-json" 추가해서 의존성제거해주면 정상동작
+ 
+ 2. 
