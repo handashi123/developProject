@@ -60,7 +60,7 @@ public class XmlToJson {
 			
 //			System.out.println(jsonNode.toString());
 			
-//			System.out.println(jsonNode.at("/instantiation/instantiation/instance-list/").asText());
+			System.out.println(jsonNode.at("/instantiation/instantiation/instance-list").asText());
 			
 			
 		} catch (Exception e) {

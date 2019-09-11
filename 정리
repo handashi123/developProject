@@ -328,4 +328,17 @@ https://docs.docker.com/toolbox/toolbox_install_windows/
   - org.springframework.boot:spring-boot-starter-test 와 충돌발생
   - exclude group:"com.vaadin.external.google", module: "android-json" 추가해서 의존성제거해주면 정상동작
  
- 2. 
+ -- 19.09.11
+ 
+ 1. Enum 공부
+  - Enum 으로 관리하게 되면 코드성 데이터들을 DB로 관리하는것 과 비교해서 장단점이 있음
+  장점 : DB에 의존적이지 않고 ide에서 지원을 받을수 있다.
+  단점 : 수정하면 배포가 필요함.
+  - db에 접근가능하고 코드성 데이터를 조작가능하면 db에 코드성으로 관리하는것이 나은것 같고, db에 접근하기 어렵거나
+  db가 여러종류라면 enum으로 관리하는것이 편할것 같다.
+  
+  db에서 데이터 조작이 어렵거나, db가 없는 api연동같은경우 enum을 사용하면 좋을것 같다.
+ 
+ 2. static
+  - static은 메모리 stack영역에 올라가므로 GC 가 처리하지 않는다. 처음에 생성하면 계속 존재함.
+  
