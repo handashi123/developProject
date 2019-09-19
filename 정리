@@ -341,4 +341,12 @@ https://docs.docker.com/toolbox/toolbox_install_windows/
  
  2. static
   - static은 메모리 stack영역에 올라가므로 GC 가 처리하지 않는다. 처음에 생성하면 계속 존재함.
+ 
+  -- 19.09.17
+ 
+ 1. thread 공부
+  - thread setDeamon : true 는 실행 thread가 종료되면 같이 종료된다.
+  * 같은 thread를 인스턴스를 다르게 하고 하나만 setDeamon을 하면 먹지 않는다. (같이 해줘야 함.)
+ 
+ 2. message queue
   
