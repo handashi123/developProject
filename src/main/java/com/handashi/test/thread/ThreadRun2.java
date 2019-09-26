@@ -1,4 +1,4 @@
-package com.handashi.test;
+package com.handashi.test.thread;
 
 public class ThreadRun2 {
 

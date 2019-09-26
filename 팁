@@ -189,8 +189,9 @@ vi 에서 붙여넣기 깨질때
 붙여넣기전 :set noai 하고 붙여넣은후 :set ai 해주면된다.
 
 
-
-
+------------------------------------------------------------
+이클립스 소스코드 변수명 highLight 표시
+Window -> Preperences -> Java -> Editor -> Mark Occurrences -> Mark occurrences of the selected element in the current file 체크
 
 
 
