@@ -372,5 +372,40 @@ https://docs.docker.com/toolbox/toolbox_install_windows/
     guest / guest
     
     
+ -- 19.10.08
+ 1. jquery ajax
+  - dataType 을 json으로 하게 되면 바로 사용가능하다.
+    {"msg":"메시지","value":"111"}
+    data.msg
+    data.value
  
+  - struts에서 out.print 로 json리턴이 가능하다.
+  response.setContentType("text/html");
+        	PrintWriter out = response.getWriter();
+//        	out.print(request.getAttribute("msg").toString());
+        	out.print("{\"msg\":\""+request.getAttribute("msg").toString()+"\", \"value\":\"111\"}");
+        	out.flush();
+        	out.close();
+
+ - json success, error, complete 차이
+   success : 성공시 실행, 파라미터 data는 json일경우 그대로 사용가능
+   error : 실패시 실행, 파라미터 data는 json일경우 그대로 사용가능
+   complete : 성공, 실패후 실행 data는 객체이기 때문에 json일경우 responseText를 파싱해서 사용해야 한다.
+   
+   var tempJson = JSON.parse(data.responseText);
+			console.log(tempJson);
+			console.log(tempJson.msg);
   
+ - 서버에서 실패하지 않아도 실패로 빠질경우
+   dataType을 확인해본다.
+
+   
+-- 19.10.15
+1. rabbitmq 때문에 스프링부트 기동시 오류 일단 주석처리
+
+2. excel 다운로드 poi 로 샘플 작성
+ - 
+ -- 19.10.16
+ 1. jquery 정리
+  - 구버전 지원은 1버전
+  - 호환성 문제일때는 migrate plugin을 같이 import 하면 됨.

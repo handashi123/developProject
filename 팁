@@ -193,7 +193,11 @@ vi 에서 붙여넣기 깨질때
 이클립스 소스코드 변수명 highLight 표시
 Window -> Preperences -> Java -> Editor -> Mark Occurrences -> Mark occurrences of the selected element in the current file 체크
 
+------------------------------------------------------------
+공휴일 계산
+SELECT MAX(WEEK_DAY) FROM (SELECT * FROM AR_INF_CALENDAR ORDER BY WEEK_DAY ASC) WHERE WEEK_DAY > '20191016' AND WEEK_HOLIDAY = '1' AND ROWNUM <= 3
 
+공휴일 테이블이 있어야함
 
 
 
