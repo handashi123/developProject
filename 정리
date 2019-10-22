@@ -409,3 +409,9 @@ https://docs.docker.com/toolbox/toolbox_install_windows/
  1. jquery 정리
   - 구버전 지원은 1버전
   - 호환성 문제일때는 migrate plugin을 같이 import 하면 됨.
+
+  -- 19.10.18
+  1. spring boot 2 부터는 bootJar로 패키징
+   - java 1.8이 기본 실행버전
+   - webapp 밑에 html, js가 있는데, 읽지 못함
+     resources 밑으로 바꿔바와 될것 같음

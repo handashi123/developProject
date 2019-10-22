@@ -1,23 +1,11 @@
 package com.handashi.test.rabbitmq;
 
-import org.springframework.amqp.core.BindingBuilder;
-import org.springframework.amqp.core.DirectExchange;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
-import org.springframework.amqp.rabbit.core.RabbitAdmin;
-import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
-import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
-
-
-
-
-
 public class Consumer {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		CachingConnectionFactory cf = new CachingConnectionFactory("127.0.0.1", 5672);
+/*		CachingConnectionFactory cf = new CachingConnectionFactory("127.0.0.1", 5672);
 		cf.setUsername("guest");
 		cf.setPassword("guest");
 		
@@ -42,7 +30,7 @@ public class Consumer {
 		MessageListenerAdapter adapter = new MessageListenerAdapter(listener);
 		container.setMessageListener(adapter);
 		container.setQueueNames("myQueue");
-		container.start();
+		container.start();*/
 		
 		
 	}

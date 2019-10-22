@@ -1,14 +1,11 @@
 package com.handashi.test.rabbitmq;
 
-import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-
 public class Producer {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		// RabbitMq 에 연결
+		/*// RabbitMq 에 연결
 		CachingConnectionFactory cf = new CachingConnectionFactory("127.0.0.1", 5672);
 		
 		cf.setUsername("guest");
@@ -20,7 +17,7 @@ public class Producer {
 		template.setExchange("amq.direct");
 		template.setQueue("myQueue");
 		template.convertAndSend("foo.bar", "Hello, world!");
-		cf.destroy();
+		cf.destroy();*/
 		
 		
 		
