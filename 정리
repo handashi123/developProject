@@ -415,3 +415,17 @@ https://docs.docker.com/toolbox/toolbox_install_windows/
    - java 1.8이 기본 실행버전
    - webapp 밑에 html, js가 있는데, 읽지 못함
      resources 밑으로 바꿔바와 될것 같음
+
+     
+-- 19.10.23
+
+1. Thread 공부
+ - java batch daemon 을 만들기위해 공부
+ - commons-daemon 을 이용하는 방법이 있었지만 프로그램 설치가 필요해 제외
+ - nohup 으로 계속 프로세스를 띄우는 방법 선택
+ - Runnable implement 받아서 Thread 클래스를 만들고, multi thread 시 공통으로 객체에 접근할때 synchronized 선언해주면 synchronized 안에 있는것들은 lock이 걸려
+   잡고 있는 thread가 끝날때까지 다른 thread에서 접근 못한다.
+ - thread 에서 반복해서 처리할경우 sleep을 걸어줘야 정상실행됩. sleep(1) 이라도 걸어줘야 함.
+ - 기존에 돌고 있는 daemon 에 다른 메인메소드 실행해서 static 변수 수정해도 변합이 없음
+   이유 : 아예 프로세스가 다름
+   실행 한 메인메소드에서 시간이 조금 지난뒤에 변수 수정했더니 잘 처리됨.
