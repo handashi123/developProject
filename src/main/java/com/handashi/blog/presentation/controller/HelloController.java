@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.handashi.blog.presentation.service.ExcelDownService;
+import com.handashi.test.db.TestDbService;
 
 @Controller
 public class HelloController {
@@ -20,6 +21,9 @@ public class HelloController {
 	@Autowired
 	@Qualifier("excelJxlDownServiceImpl")
 	private ExcelDownService excelJxlDownServiceImpl;
+	
+	@Autowired
+	private TestDbService testDbImpl;
 	
 	@RequestMapping("/hello")
 	public String index(Model model){
@@ -41,6 +45,9 @@ public class HelloController {
 		excelJxlDownServiceImpl.excelDown(response);
 	}
 	
-	
+	@RequestMapping("/testdb")
+	public String testDb() {
+		return testDbImpl.selectTest();
+	}
 	
 }

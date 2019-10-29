@@ -429,3 +429,16 @@ https://docs.docker.com/toolbox/toolbox_install_windows/
  - 기존에 돌고 있는 daemon 에 다른 메인메소드 실행해서 static 변수 수정해도 변합이 없음
    이유 : 아예 프로세스가 다름
    실행 한 메인메소드에서 시간이 조금 지난뒤에 변수 수정했더니 잘 처리됨.
+ - 멀티스레드 시에는 동시에 접근하면 안되는 것에는 동기화 시켜서 순차처리 해야 한다.
+ 
+ -- 19.10.29
+ 1. mybatis 설치
+  - spring boot 2 부터는 hikari dbcp 를 사용한다.
+  - hikari dbcp 를 사용할때는 ojdbc 12.1.0.2 최신 드라이버를 사용해야 된다.
+  - mybatis는 xml에 dao를 맵핑해서 사용한다.
+  - mapperScan : ** 카드로 특정 path를 인식시킬수 있다. 앞패키지만 써넣을 경우 다른 service, 
+    Bean 들도 mybatis 빈으로 인식됨으로 Autowire로 인터페이스를 가져올때 변수명을 앞자리만 소문자인 상속클래스
+     네이밍으로 해야된다. (별도로 인식시켜야함)
+  - setTypeAliasesPackage 도 마찬가지임.
+  - 따로 sqltemplate를 안만들어도 된다.
+  

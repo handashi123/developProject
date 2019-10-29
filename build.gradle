@@ -14,7 +14,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-// apply plugin: 'war'
+apply plugin: 'war'
 
 group = 'com.handashi'
 version = '0.0.1-SNAPSHOT'
@@ -76,7 +76,14 @@ dependencies {
 	
 	compile group: 'net.sourceforge.jexcelapi', name: 'jxl', version: '2.6.12'
 	
-	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+	// 19.10.28 mybatis setting
+	compile 'org.mybatis:mybatis-spring:1.2.4'
+	compile 'org.mybatis:mybatis:3.3.1'
+	compile fileTree (dir: 'src/main/resources/lib', include:['*.jar'])
+	// compile group: 'com.oracle', name: 'ojdbc7', version: '12.1.0.2' 안됨
+	compile('org.springframework.boot:spring-boot-starter-tomcat')	
+	
+	//providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test'){
 		exclude group:"com.vaadin.external.google", module: "android-json"
 	}	
