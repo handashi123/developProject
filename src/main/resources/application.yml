@@ -6,6 +6,6 @@ spring:
     datasource:
         hikari:
           driver-class-name: oracle.jdbc.driver.OracleDriver
-          jdbc-url: jdbc:oracle:thin:@172.22.245.146:1521:DIDMS
-          username: idms
-          password: 'idmspwd6#d'
+          jdbc-url: 오라클URL
+          username: 오라클ID
+          password: '오라클패스워드'
