@@ -442,3 +442,14 @@ https://docs.docker.com/toolbox/toolbox_install_windows/
   - setTypeAliasesPackage 도 마찬가지임.
   - 따로 sqltemplate를 안만들어도 된다.
   
+  
+ -- 19.11.04 
+ 1. mybatis java 설정
+  - mybatis를 메인에서 실행할때 설정
+ 
+ 2. 목록에서 구분값을 구해야 할때 list<map> 구조일때 상황에 따라 비교로직을 다르게 줘야한다.
+  - 비교값이 달라질때 액션을 해야 하면 현재형에서 전행을 비교하면 된다.
+  - 후행이 같을 경우 누적해야 하면 후행을 비교하면 된다.  
+ 
+3. preparedStatement의 addBatch의 경우 쿼리를 메모리에 올려 executeBatch시에 한번에 전송
+ - 메모리 부족발생하기 때문에 1000건정도 마다 commit 해줘야 한다.

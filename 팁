@@ -199,10 +199,36 @@ SELECT MAX(WEEK_DAY) FROM (SELECT * FROM AR_INF_CALENDAR ORDER BY WEEK_DAY ASC) 
 
 공휴일 테이블이 있어야함
 
+------------------------------------------------------------
+더미데이터 생성
+INSERT INTO AR_INF_MANUAL_LOCK_LIST
+SELECT 
+'1911040002' AS SEQ_NO
+, 'ms00771' AS ITG_USER_ID
+, 'GallTest' || ROUND(DBMS_RANDOM.VALUE(1000000,5)) AS APP_SYS_ID
+, 'test' || ROUND(DBMS_RANDOM.VALUE(1000000,5)) AS APP_LOGIN_ID
+, 'auth' || ROUND(DBMS_RANDOM.VALUE(1000000,5)) AS AUTH_ID
+, NULL AS COMPLETE_YN
+, '랜덤' || ROUND(DBMS_RANDOM.VALUE(1000000,5)) AS REQ_DESC
+FROM DUAL
+CONNECT BY LEVEL <= 100000
+;
 
 
+------------------------------------------------------------
+오라클 열 -> 행, 행 -> 열
 
-
+(
+    SELECT 
+        LISTAGG(AUTH_NM, ',') WITHIN GROUP (ORDER BY AUTH_ID) -- 행을 열로 변환
+    FROM AR_INF_APP_ROLE
+    WHERE APP_SYS_ID = TEMP.APP_SYS_ID
+    AND AUTH_ID IN 
+    (
+        SELECT DISTINCT REGEXP_SUBSTR(TEMP.SYS_AUTH_INFO, '[^,]+', 1, LEVEL) FROM DUAL
+        CONNECT BY LEVEL <= LENGTH(REGEXP_REPLACE(TEMP.SYS_AUTH_INFO, '[^,]+', '')) + 1
+    ) -- 열을 행으로 변환
+) AS SYS_AUTH_INFO_NM  
 
 
 
