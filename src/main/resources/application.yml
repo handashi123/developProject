@@ -9,3 +9,14 @@ spring:
           jdbc-url: 오라클URL
           username: 오라클ID
           password: '오라클패스워드'
+#          driver-class-name: org.h2.Driver
+#          jdbc-url: jdbc:h2:file:./h2database;AUTO_SERVER=TRUE
+#          username: sa
+#          password: 
+    h2:
+      console:
+        enabled: true # h2 웹콘솔을 사용함
+        path: /test_db # 콘솔의 경로
+    devtools:
+      livereload:
+        enable: true

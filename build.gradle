@@ -83,6 +83,9 @@ dependencies {
 	// compile group: 'com.oracle', name: 'ojdbc7', version: '12.1.0.2' 안됨
 	compile('org.springframework.boot:spring-boot-starter-tomcat')	
 	
+	// 19.11.07 no restart setting
+	compile('org.springframework.boot:spring-boot-devtools')
+	
 	//providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test'){
 		exclude group:"com.vaadin.external.google", module: "android-json"

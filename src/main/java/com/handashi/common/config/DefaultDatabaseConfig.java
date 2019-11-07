@@ -1,5 +1,7 @@
 package com.handashi.common.config;
 
+import java.io.File;
+
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -15,6 +17,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.handashi.common.util.GetPathTest;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -28,13 +31,23 @@ public class DefaultDatabaseConfig{
 	private ApplicationContext applicationContext;
 	
 	@Bean
-//	@ConfigurationProperties(prefix = "spring.datasource.hikari")
+//	@ConfigurationProperties(prefix = "spring.datasource.hikari")	
 	public HikariConfig hikariConfig() {
 		HikariConfig hikariConfig = new HikariConfig();
-		hikariConfig.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-		hikariConfig.setJdbcUrl("오라클URL");
-		hikariConfig.setUsername("오라클ID");
-		hikariConfig.setPassword("오라클 패스워드");
+		
+		// mybatis setting
+//		hikariConfig.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+//		hikariConfig.setJdbcUrl("오라클URL");
+//		hikariConfig.setUsername("오라클ID");
+//		hikariConfig.setPassword("오라클 패스워드");
+		
+		// h2 setting
+		hikariConfig.setDriverClassName("org.h2.Driver");
+		
+//		h2 url setting : jdbc:h2:file:C:/study/workspace/developProject/bin/main/;AUTO_SERVER=TRUE
+		hikariConfig.setJdbcUrl("jdbc:h2:file:./h2database;AUTO_SERVER=TRUE");
+		hikariConfig.setUsername("sa");
+		hikariConfig.setPassword("");
 		
 		// spring.datasource.hikari 가 prefix		
 		return hikariConfig;

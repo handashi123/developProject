@@ -453,3 +453,14 @@ https://docs.docker.com/toolbox/toolbox_install_windows/
  
 3. preparedStatement의 addBatch의 경우 쿼리를 메모리에 올려 executeBatch시에 한번에 전송
  - 메모리 부족발생하기 때문에 1000건정도 마다 commit 해줘야 한다.
+
+ -- 19.11.07
+1. mybatis oracle 설정 제외하고 기동실패
+ - in memory data base 도 설정하고 교대로 실행가능하게 만들어야 될것 같다.
+
+2. h2 database setting
+ - ./h2database로 설정 프로젝트 루트에 생긴다.
+ - localhost/test_db 로 접속하면 기본 접속화면이 나오고, 설정한 url로 넣고 접속하면 접속된다.
+
+3. ResponseBody : 매핑된 view로 가지 않고 그대로 리턴
+ 
