@@ -1,0 +1,466 @@
+프로그램명
+jdk-8u171-windows-x64
+mariadb-10.2.16-winx64
+spring-tool-suite-3.9.5.RELEASE-e4.8.0-win32-x86_64
+
+-- 18.07.08
+1. 프로그램 설치 및 git hub 연동
+2. sts 에 gradle 플러그인 설치
+3. mariadb 설치 (설치시 utf-8옵션으로 설치)
+
+-- 18.07.09
+1. gradle 플러그인 설치
+ - buildship gradle integration -> x 안됨.
+ - sts 에선 dashboard에서 플러그인으로 설치해야함. (extension -> gradle support)
+
+* sts에서 github 접속안되는 원인 (1.7에선 안됨, 1.8에선 됨)
+ - 이클립스와 다른거 같음.
+
+2. 샘플 프로젝트 생성
+ - springboottest (프로젝트이름에 _가 들어가면 생성안됨)
+
+3. 샘플 코드 테스트
+ - helloworld출력 (gradle에 기본 dependency만 남겨두고 실행)
+ - run as -> spring app -> http://localhost:8080
+ - com.handashi.HelloRestController.java
+
+-- 18.07.11
+1. spring project로 생성한 프로젝트 샘플을 developPoject 로 이동
+ - developPoject Project facets -> web 프로젝트 설정
+ - developProject spring tools -> spring Nature 로 변경 
+ - configure -> gradle project로 변경
+ - gradle 관련 폴더및 파일, src 폴더 복사
+ - spring boot app 기동 시켜 샘플 페이지 테스트
+
+-- 18.07.13
+1. sts 에서 dashboard 여는법
+ - help -> dashboard
+
+2. sts 3.9.5 에서는 gradle이 dashboard에 없다.
+ - buildship gradle integration 설치후 gradle ide pack 3.8x 설치
+
+-- 18.07.26
+
+1. jpa 설정
+ - 메모리상에 올라가는 DB같이 사용할수 있는 데이터 입출력 모듈
+ - compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-jdbc')
+	runtime('com.h2database:h2')
+ - @Entity : 테이블로 보면 됨
+ - @Id : pk
+ - @GenerateValue : 자동생성값
+
+참고 URL : 
+http://millky.com/@origoni/post/1140
+https://jdm.kr/blog/121
+
+-- 18.07.27
+
+1. 프로젝트 폴더 구조
+ - WebContent, webapp 의 차이
+ - WebContent의 경우 이클립스에서 만들어지는 방식
+ - webapp의 경우 maven에서 만들어지는 방식
+ - 개발자간의 호환성을 위해 webapp 방식 사용
+ - 이클립스에선 직접 폴더 만들어야 함.
+ - src : 프로그램 소스 파일을 두는 곳
+ - main/java : 자바 소스 파일(.java파일)을 두는 곳
+ - main/resources : 프로그램을 실행할 때 사용하는 설정 파일(.properties, .xml 등)을 두는 곳
+ 
+ - 직접 만들어야 함. * main/webapp : HTML, CSS, JavaScript, GIF 등 정적 웹 자원을 두는 곳. (JSP파일도 여기에 둠)
+ - 직접 만들어야 함. * main/webapp/WEB-INF : 웹 애플리케이션 정보 파일을 두는 곳
+ 
+ - test : 코드를 테스트하는 소스 파일을 두는 곳
+ - test/java : 단위 테스트 관련 자바 소스 파일을 두는 곳
+ - bin : 소스코드가 컴파일된 *.class 파일, *properties파일, *xml파일 등
+
+2. 이클립스 html5 기본세팅
+ - preferences -> Web -> JSP Files -> Editor -> Template -> New
+ - jsp for HTML5
+<%@ page language="java" contentType="text/html; charset=${encoding}" pageEncoding="${encoding}"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=${encoding}">
+<title>Insert title here</title>
+</head>
+<body>
+
+${cursor}
+
+</body>
+</html>
+ - 기본생성 되는 jsp 파일 UTF-8로 기본세팅
+ - preferences -> Web -> JSP Files
+ - UTF-8로 변경
+
+3. 이클립스에서 tab대신 space사용
+ - preferences -> General -> Editors -> Text Editor -> Insert spaces for tabs 체크
+ - preferences -> Java -> Code Style -> formatter -> New (새로운 fomatter 생성) -> Indentation -> space Only로 변경
+
+4. spring jsp 사용하기
+ 1) 관련 dependency 추가
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('javax.servlet:jstl')
+    providedCompile('org.apache.tomcat.embed:tomcat-embed-jasper')
+ 1) HelloController.java 생성 (/hello 전달받아 name에 값추가해서 view로 넘김)
+  - src/main/resources/application.yml 생성
+  - 새버전에서는 뷰 매핑을 spring:mvc:view: 로 사용한다. *****************
+ 2) hello.jsp (전달받은값을 표시)
+
+5. spring velocity 사용하기
+ 1) jsp 관련 라이브러리 주석처리
+ 2) html 파일 생성후 vm으로 변경
+--- 잘안됨.
+
+-- 18.07.30
+
+1. thymeleaf 설정
+ - build.gradle 에 추가 org.springframework.boot:spring-boot-starter-thymeleaf
+ - src/main/resources/templates/hello.html 생성
+
+2. tomcat 설정및 java run으로 기동할수 있게 설정
+ - build.gradle 에 org.springframework.boot:spring-boot-starter-tomcat 추가
+ - 패키지 최상단에 @SpringBootApplication 이 있는 main 메소드 클래스가 있어야 동작
+ - 딱히 SpringBootServletInitializer 를 구현한 클래스는 필요없음. (테스트 해봄)
+
+3. bootstrap 설정
+ - webjar 사용해서 설치
+ - compile 'org.webjars.bower:bootstrap:4.1.3'
+ - compile 'org.webjars.bower:jquery:3.3.1'
+ - webjar를 사용하게 되면 lib 에 있는 jar를 참조해서 로딩한다.
+<link rel="stylesheet" href="/webjars/bootstrap/4.1.3/dist/css/bootstrap.min.css">
+<script src="/webjars/jquery/3.3.1/dist/jquery.min.js"></script>
+<script src="/webjars/bootstrap/4.1.3/dist/js/bootstrap.min.js"></script>
+
+4. blog sample 페이지 설정
+ - compile ('org.webjars.bower:origoni-startbootstrap-clean-blog:1.0.3')
+ - 추가후 blog.jsp 생성 (이미지의 경우 오래되어서 404에러 발생)
+
+-- 18.08.24
+two -> one
+
+-- 18.11.06
+1. sts 에 svn 설치
+ - eclipse maketplace : SVN Team Provider 4.0.5 설치후 재시작
+ - Window -> Preferences -> Team -> SVN -> SVN Connector : Get Connectors...
+   SVN Kit 1.8.14 설치후 재시작
+
+2. RestTemplate 을 이용해서 api 호출 가능
+ - 파라미터의 경우 restTemplate.getForObject("http://localhost:8080/getHelloList/{num}", String.class, num); 뒤에 복수로도 붙여줄수 있다.
+
+3. json 변환
+ - json to map
+   HashMap<String, Object> rs = new ObjectMapper().readValue(result.toString(), HashMap.class);
+   map to json
+   new ObjectMapper().writeValueAsString(rs);
+ 
+ -- 18.11.07
+ 1. mybatis에서 resultType 의 vo경로를 @Alias("별명") 으로 사용할수 있다.
+  - application.yml에 type-aliases-package: co.kr.lguplus 선언은 해야함.
+  
+ 2. jackson json 사용법
+  - https://www.lesstif.com/pages/viewpage.action?pageId=24445183
+ 
+ 3. @JsonProperty 사용법
+  - vo에서 json과 파라미터 값이 다를경우 JsonProperty("파라미터") 를 선언해주면 그값으로 받거나 되돌려줄수 있다.
+ 
+ -- 18.11.13
+ 1. json -> vo
+ - ObjectMapper 로 json 문자열을 넣어 vo에 넣으면 하위 vo까지 전부 자동으로 들어감
+ - 만약 빈값이 들어올 확률이 있는 항목이 있다면 @JsonInclude(Include.NON_NULL) 변수위에
+   선언해 주면 됨.
+   
+ RestTemplate restTemplate = new RestTemplate();
+ ClovaExtensionRequestDto clovaExtensionRequestDto = new ClovaExtensionRequestDto();
+			ObjectMapper mapper = new ObjectMapper();
+		String retVal = restTemplate.getForObject("http://localhost:8080/jsonVoTest", String.class);
+		clovaExtensionRequestDto = mapper.readValue(retVal, ClovaExtensionRequestDto.class);
+		System.out.println("전체 : " + clovaExtensionRequestDto.toString());
+		
+자동으로 json -> vo 로 들어감
+		
+new ObjectMapper().readValue(jsonNode.path("session").path("user").toString(), UserDto.class);
+
+해당 json 노드만 가지고 올수도 있다.
+
+ -- 18.11.15
+ 1.공통예외 처리 
+  - Exception <- BaseException <- CustomException1
+  - ExceptionTestController 여기서 예외 발생시킴
+  - GlobalExceptionHandler : 공통예외처리
+    @ControllerAdvice : 공통 예외 (전체 컨트롤러)
+    @Order(Ordered.HIGHEST_PRECEDENCE) 우선순위 최상위
+    @RestController : api 로 리턴 (json)
+    메소드
+    @ExceptionHandler(Exception.class) : Exception은 전부 여기서 처리
+    new ResponseEntity<>(e, HttpStatus.BAD_REQUEST); : https status 예외처리 발생 (e에 담아 리턴하니 전체 오류메시지가 json으로 리턴됨
+    
+    
+-- 18.11.19
+aspectj 정리
+포인트컷 표현식
+execution(*io.icednut.spring.exercise..*Impl.get*(..))
+execution(	*	io.icdenut.spring.exercise..	*Impl	.	get*(..)	)
+ 	리턴타입	패키지경로	클래스명	 	메소드명 매개변수	 
+리턴 타입
+타입	설명
+*	모든 리턴타입허용
+void	리턴타입 void인 메소드 선택
+!void	void가 아닌 메소드 선택
+패키지 경로
+패키지경로	설명
+io.icednut.spring.exercise	정확하게 패키지 선택
+io.icednut.spring.exercise..	패키지로 시작하는 모든 패키지 선택
+io.icednut.spring..impl	io.icednut.spring으로 시작하면서 마지막 패키지 이름이 Impl로 끝나는 패키지 선택
+클래스명
+클래스명	설명
+BoardServiceImpl	정확한 클래스 선택
+*Impl	이름이 Impl로 끝나는 클래스 선택
+BoardService+	해당 클래스로 파생된 모든 자식 클래스 선택, 인터페이스 구현 된 모든 클래스 선택
+메소드명, 매개변수
+메소드명, 매개변수	설명
+*	모든 메소드 선택
+get*(..)	이름이 get으로 시작하는 모든 메소드 선택
+
+-- 18.11.21
+request -> filter -> interceptor -> controller
+
+1. 필터는 요청이 처음 들어왔을경우 걸러준다.
+2. 인터셉터는 컨트롤러로 가기전 걸러준다.
+3. aop는 인터셉터 후 걸러줒다.
+4. 응답은 필터제외하고 역순
+
+-- 18.11.22
+@JsonTypeInfo(include = As.WRAPPER_OBJECT, use = Id.NAME) 를 붙여주면 자동으로 이름이 json에 등록
+
+객체를 json으로 리턴할경우 vo선언한대로 json으로 리턴된다.
+그런데, name, value 구조로 되어있을경우 클래스명이 표현되지 않는다.
+map에 name, 객체로 넣어두고 출력해보니 일단 잘 출력된다.
+
+-- 18.11.23
+
+vo를 잘 만들면 자동 매핑 된다.
+ApiTestController
+ApiTestVo
+ApiTestSubListVo
+
+
+-- 18.11.28
+
+linux 오라클 접속법
+su - oracle
+sqlplus /nolog
+connect / as sysdba
+
+* http connection pooling
+ - restTemplate 으로 접속해서 통신할때 급작스럽게 과도한 통신이 발생하면
+   부하가 발생한다.
+ - pool을 만들어서 안정적으로 통신할수 있다.
+ - restTemplate @Configuration @Bean 으로 config 클래스를 만들어서 설정해줄수 있다.
+ https://bluepoet.me/2017/09/06/resttemplate-%EC%82%AC%EC%9A%A9%EC%8B%9C-%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD/
+ 
+ -- 18.12.10
+ 
+ Gson을 이용한 Json 파싱
+  - GsonSample 작성
+
+
+-- 18.12.11
+ 1. JsonObject 로 json을 파싱하고
+   JsonObject를 컨트롤 할수 있다. JsonArray 로 배열 사용
+ 
+ 2. String 배열을 Arrays.asList(배열).contains("찾을값") 으로 사용할수 있다.
+ 
+ -- 18.12.29
+ 
+ 1. Gson 에서 json 을 문자열로 변경할땐 toJson 사용
+ 2. 문자열로 된 json을 파싱할땐 먼저 JsonObject 로 변환해서 문자열의 key를 찾고
+     문자열을 가져온다음 String으로 파싱 그걸 다시 fromJson을 사용해서  jsonObject로 파싱
+    다시 키, 값으로 넣으면 된다.
+  - Gson에서 toJson을 사용하면 문자열로 변환
+  - 문자열로 된걸 fronJson String.class로 가져오면 자동적으로 json형식으로 변환됨.
+ 
+ -- 19.03.20
+ 1. 불필요 루트나 불필요 파일에 접근하게 하고 싶지 않다면 was의 경우 web.xml 에 security-constraint 설정을
+     하면된다.
+
+ -- 19.08.28
+ 1. ENUM 공부
+  - ENUM 클래스 활용
+  - 데이터를 읽어올때 코드들이나 같이 세트로 움직이는 값들을 한번에 계산할수 있다.
+  - ex) 상품코드와 판매가만 있을경우, 상품명, 원가, 부가세 등은 실제로 다른 데이터에서 읽어와야 되는경우가 있는데
+          enum 으로 관리하게 되면 enum 클래스만 보고 유추할수 있다.
+          그런데 기존 legacy 들은 db로 보통 관리하기 때문에 enum클래스를 사용할일이 많지 않을것 같다.
+          신규일때는 다를것 같음
+  
+ 2. html 이메일 내용 파싱
+  - 이메일의 내용이 html일경우 String 으로 만드는건 알아보기 힘드므로 html 파일을 읽어 변환되는부분들만 변환해주게
+    개발
+    이메일을 보낼때마다 파일을 읽어 파싱하게 되면 성능상 좋지 않을것 같다. 
+   파일을 읽을때 변경이 되지 않았다면 캐시에 올리는게 나을듯
+   
+ 
+ 
+-- 19.08.29
+1. docker
+ - 설치
+https://steemit.com/kr/@mystarlight/docker
+https://docs.docker.com/toolbox/toolbox_install_windows/
+
+-- 19.09.02
+
+1. sh, bat 설정
+ - linux에서 export 명령으로 설정되어있는것을 볼수 있고, sh파일에서 export 로 변수 설정할수 있다.
+   ex) export APP_HOME=/app/tomcat
+        ${APP_HOME}/lib
+
+ - window에서 set 명령으로 export 같이 사용할수 있다.
+   ex) SET APP_HOME=C:\eclipse\workspace\sqlLoader
+        %APP_HOME%\lib
+        
+ - linux에서 DATE 명령은 날짜관련 명령이고, 변수로 $DATE 로 sh 안에서 사용가능
+ - window에서 빈칸이 들어간 경로면 ""안에 넣어주면 된다.
+ 
+ -- 19.09.05
+ 
+ 1. xml 에서 json 으로 파싱하는 라이브러리
+  - compile 'org.json:json:20190722'
+  - org.springframework.boot:spring-boot-starter-test 와 충돌발생
+  - exclude group:"com.vaadin.external.google", module: "android-json" 추가해서 의존성제거해주면 정상동작
+ 
+ -- 19.09.11
+ 
+ 1. Enum 공부
+  - Enum 으로 관리하게 되면 코드성 데이터들을 DB로 관리하는것 과 비교해서 장단점이 있음
+  장점 : DB에 의존적이지 않고 ide에서 지원을 받을수 있다.
+  단점 : 수정하면 배포가 필요함.
+  - db에 접근가능하고 코드성 데이터를 조작가능하면 db에 코드성으로 관리하는것이 나은것 같고, db에 접근하기 어렵거나
+  db가 여러종류라면 enum으로 관리하는것이 편할것 같다.
+  
+  db에서 데이터 조작이 어렵거나, db가 없는 api연동같은경우 enum을 사용하면 좋을것 같다.
+ 
+ 2. static
+  - static은 메모리 stack영역에 올라가므로 GC 가 처리하지 않는다. 처음에 생성하면 계속 존재함.
+ 
+  -- 19.09.17
+ 
+ 1. thread 공부
+  - thread setDeamon : true 는 실행 thread가 종료되면 같이 종료된다.
+  * 같은 thread를 인스턴스를 다르게 하고 하나만 setDeamon을 하면 먹지 않는다. (같이 해줘야 함.)
+ 
+ 2. message queue
+  
+-- 19.09.17
+1. rabbitMq 공부
+ 1) 설치   
+  1-1) 먼저 erlang 설치가 되어있어야 한다. : https://www.erlang.org/downloads
+  1-2) 환경변수 세팅
+   ERLANG_HOME : C:\Program Files\erl6.0   
+  1-3) 윈도우의 경우 rabbitmq-server-3.7.18.exe (https://www.rabbitmq.com/download.html)
+  1-4) 환경변수 세팅
+   RABBITMQ_SERVER : C:\Program Files\RabbitMQ Server\rabbitmq_server-3.7.18
+   path 추가 : ;%RABBITMQ_SERVER%\sbin   
+  - 플러그인 설치
+    cmd(관리자) 진입후 c:/Program Files/RabbitMQ Server/rabbitmq_server-x.x.x/sbin 이동후
+    rabbitmq-plugins enable rabbitmq_management
+  - 설치완료후  rabbitmq 재시작
+    rabbitmq-service stop
+    rabbitmq-service install
+    rabbitmq-service start
+  - 관리툴 접속
+    http://127.0.0.1:15672
+    guest / guest
+    
+    
+ -- 19.10.08
+ 1. jquery ajax
+  - dataType 을 json으로 하게 되면 바로 사용가능하다.
+    {"msg":"메시지","value":"111"}
+    data.msg
+    data.value
+ 
+  - struts에서 out.print 로 json리턴이 가능하다.
+  response.setContentType("text/html");
+        	PrintWriter out = response.getWriter();
+//        	out.print(request.getAttribute("msg").toString());
+        	out.print("{\"msg\":\""+request.getAttribute("msg").toString()+"\", \"value\":\"111\"}");
+        	out.flush();
+        	out.close();
+
+ - json success, error, complete 차이
+   success : 성공시 실행, 파라미터 data는 json일경우 그대로 사용가능
+   error : 실패시 실행, 파라미터 data는 json일경우 그대로 사용가능
+   complete : 성공, 실패후 실행 data는 객체이기 때문에 json일경우 responseText를 파싱해서 사용해야 한다.
+   
+   var tempJson = JSON.parse(data.responseText);
+			console.log(tempJson);
+			console.log(tempJson.msg);
+  
+ - 서버에서 실패하지 않아도 실패로 빠질경우
+   dataType을 확인해본다.
+
+   
+-- 19.10.15
+1. rabbitmq 때문에 스프링부트 기동시 오류 일단 주석처리
+
+2. excel 다운로드 poi 로 샘플 작성
+ - 
+ -- 19.10.16
+ 1. jquery 정리
+  - 구버전 지원은 1버전
+  - 호환성 문제일때는 migrate plugin을 같이 import 하면 됨.
+
+  -- 19.10.18
+  1. spring boot 2 부터는 bootJar로 패키징
+   - java 1.8이 기본 실행버전
+   - webapp 밑에 html, js가 있는데, 읽지 못함
+     resources 밑으로 바꿔바와 될것 같음
+
+     
+-- 19.10.23
+
+1. Thread 공부
+ - java batch daemon 을 만들기위해 공부
+ - commons-daemon 을 이용하는 방법이 있었지만 프로그램 설치가 필요해 제외
+ - nohup 으로 계속 프로세스를 띄우는 방법 선택
+ - Runnable implement 받아서 Thread 클래스를 만들고, multi thread 시 공통으로 객체에 접근할때 synchronized 선언해주면 synchronized 안에 있는것들은 lock이 걸려
+   잡고 있는 thread가 끝날때까지 다른 thread에서 접근 못한다.
+ - thread 에서 반복해서 처리할경우 sleep을 걸어줘야 정상실행됩. sleep(1) 이라도 걸어줘야 함.
+ - 기존에 돌고 있는 daemon 에 다른 메인메소드 실행해서 static 변수 수정해도 변합이 없음
+   이유 : 아예 프로세스가 다름
+   실행 한 메인메소드에서 시간이 조금 지난뒤에 변수 수정했더니 잘 처리됨.
+ - 멀티스레드 시에는 동시에 접근하면 안되는 것에는 동기화 시켜서 순차처리 해야 한다.
+ 
+ -- 19.10.29
+ 1. mybatis 설치
+  - spring boot 2 부터는 hikari dbcp 를 사용한다.
+  - hikari dbcp 를 사용할때는 ojdbc 12.1.0.2 최신 드라이버를 사용해야 된다.
+  - mybatis는 xml에 dao를 맵핑해서 사용한다.
+  - mapperScan : ** 카드로 특정 path를 인식시킬수 있다. 앞패키지만 써넣을 경우 다른 service, 
+    Bean 들도 mybatis 빈으로 인식됨으로 Autowire로 인터페이스를 가져올때 변수명을 앞자리만 소문자인 상속클래스
+     네이밍으로 해야된다. (별도로 인식시켜야함)
+  - setTypeAliasesPackage 도 마찬가지임.
+  - 따로 sqltemplate를 안만들어도 된다.
+  
+  
+ -- 19.11.04 
+ 1. mybatis java 설정
+  - mybatis를 메인에서 실행할때 설정
+ 
+ 2. 목록에서 구분값을 구해야 할때 list<map> 구조일때 상황에 따라 비교로직을 다르게 줘야한다.
+  - 비교값이 달라질때 액션을 해야 하면 현재형에서 전행을 비교하면 된다.
+  - 후행이 같을 경우 누적해야 하면 후행을 비교하면 된다.  
+ 
+3. preparedStatement의 addBatch의 경우 쿼리를 메모리에 올려 executeBatch시에 한번에 전송
+ - 메모리 부족발생하기 때문에 1000건정도 마다 commit 해줘야 한다.
+
+ -- 19.11.07
+1. mybatis oracle 설정 제외하고 기동실패
+ - in memory data base 도 설정하고 교대로 실행가능하게 만들어야 될것 같다.
+
+2. h2 database setting
+ - ./h2database로 설정 프로젝트 루트에 생긴다.
+ - localhost/test_db 로 접속하면 기본 접속화면이 나오고, 설정한 url로 넣고 접속하면 접속된다.
+
+3. ResponseBody : 매핑된 view로 가지 않고 그대로 리턴
+ 

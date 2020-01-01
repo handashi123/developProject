@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script type="text/javascript" src="../js/jquery-3.4.1.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Insert title here</title>
+</head>
+
+<body>
+	<!-- http://localhost:8080/html/jqueryCheckBoxEventTest.html -->
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#testCheck").bind("click", function(){
+				checkBoxEvent();	
+			})
+
+			$("#change").on("click", function(){
+				// $("#testText > font").html("버튼클릭");
+				
+				$("#testCheck").prop("checked", function(){
+					return !$(this).prop("checked");
+				});
+				checkBoxEvent();
+			});
+		});
+		// 체크박스 클릭시 이벤트
+		function checkBoxEvent(){
+			if($("#testCheck").is(":checked")){
+					$("#testText > font").html("체크");
+				}else{
+					$("#testText > font").html("");
+				}
+		}
+	</script>
+	
+	<input id="testCheck" type="checkbox" /> 체크테스트	
+	<span id="testText"><font color="red"></font></span>
+	<br/>
+	<input id="change" type="button" value="변경">
+</body>
+
+</html>
