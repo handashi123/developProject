@@ -10,3 +10,40 @@
 1. docker
 2. linux 설치후 웹프로젝트 기동
 3. 하나씩 붙여보자
+---
+2020.01.03 (fri)
+* docker 설치
+1. docker
+ - 설치
+https://steemit.com/kr/@mystarlight/docker
+https://docs.docker.com/toolbox/toolbox_install_windows/
+ - 문제
+ 1) AMD CPU의 경우 가상화를 켰지만 docker에서 가상화를 키라고 나오고, 실행안됨.
+   - 해결 : https://agiantmind.tistory.com/201
+            windows defender 의 장치보안기능중 코어격리 기능 중 매모리 무결성 정책이 켜진경우
+            정상독작하지 않아 해당기능을 끄면 docker가 정상동작함.
+            Windows 보안 → 장치 보안 → 코어 격리 세부 정보 → 메모리 무결성 기능 끔(OFF)
+ 2) 위의 방법으로 가상화 켜졌는데도 해결이 안될때
+  - 해결 : docker 설치 폴더의 start.sh 에 docker 설치 문에 옵션을 붙여준다.
+           --virtualbox-no-vtx-check
+             "${DOCKER_MACHINE}" create -d virtualbox $PROXY_ENV --virtualbox-no-vtx-check "${VM}"
+
+                        ##         .
+                  ## ## ##        ==
+               ## ## ## ## ##    ===
+           /"""""""""""""""""\___/ ===
+      ~~~ {~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~
+           \______ o           __/
+             \    \         __/
+              \____\_______/
+
+docker is configured to use the default machine with IP 192.168.99.100
+For help getting started, check out the docs at https://docs.docker.com
+
+
+Start interactive shell
+
+han@DESKTOP-ECMOM50 MINGW64 /d/Docker Toolbox
+
+2. 유의점
+ - 설치후 종료시 vitualbox 는 자동으로 꺼지지 않으므로 동작하는 os를 멈춰주어야 한다.
