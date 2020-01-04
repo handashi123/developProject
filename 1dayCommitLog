@@ -47,3 +47,42 @@ han@DESKTOP-ECMOM50 MINGW64 /d/Docker Toolbox
 
 2. 유의점
  - 설치후 종료시 vitualbox 는 자동으로 꺼지지 않으므로 동작하는 os를 멈춰주어야 한다.
+---
+2020.01.04 (SAT)
+* docker 실습
+https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html
+
+docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
+다음은 자주 사용하는 옵션들입니다.
+
+옵션	설명
+-d	detached mode 흔히 말하는 백그라운드 모드
+-p	호스트와 컨테이너의 포트를 연결 (포워딩)
+-v	호스트와 컨테이너의 디렉토리를 연결 (마운트)
+-e	컨테이너 내에서 사용할 환경변수 설정
+–name	컨테이너 이름 설정
+–rm	프로세스 종료시 컨테이너 자동 제거
+-it	-i와 -t를 동시에 사용한 것으로 터미널 입력을 위한 옵션
+–link	컨테이너 연결 [컨테이너명:별칭]
+
+1. docker version : 버전확인
+
+2. docker 실습
+ - ubntu 실행
+   docker run ubuntu:16.04
+   ubuntu 를 실행한다. (다운받은 이미지가 없으면 다운후 실행)
+   
+   docker run --rm -it ubuntu:16.04 /bin/bash (-- rm 종료후 컨테이너 삭제, -it 키보드 입력가능, /bin/bash 배쉬명령실행)
+ - redis 실습
+   docker -d -p 1234:6379 redis (컨테이너는 올라가는데 접속이 안됨)
+
+* 윈도우10 에서 telnet 설치
+ - 제어판 -> 프로그램 설치 -> 윈도우 구성 -> telnet client
+
+* docker 의 경우 윈도우에서 설치시 가상 linux를 띄우고 거기에 docker 를 띄운다.
+ 이미지를 없으면 다운받아 실행하고 프로세스가 없으면 종료된다.
+ docker ps (실행중 이미지 목록)
+ docker ps a (전체 이미지 목록)
+ 
+
+ 
