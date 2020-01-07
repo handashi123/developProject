@@ -83,7 +83,7 @@ docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
  이미지를 없으면 다운받아 실행하고 프로세스가 없으면 종료된다.
  docker ps (실행중 이미지 목록)
  docker ps a (전체 이미지 목록)
- 
+---
 2020.01.06 (MON)
 * docker 공부
 1. docker redis 접속이 안됨. - 해결
@@ -92,9 +92,12 @@ docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
  - 해결 : virtualbox 에 포트포워딩을 해주어야 포트가 열림
           포트열고 실행해보니 됨. 그런데 set 은 소문자로 되는데, Get 은 대문자로 해줘야 함.
           https://sukill.tistory.com/2
+  *** virtualbox의 호스트는 현재 로컬을 말하고, guest는 docker process를 말한다.
+      ex) docker run -p 8080:80 으로 세팅을 했을경우 host는 80 guest는 8080이다. 
 
 2. 실행되어있는 docker 프로세스에 접속하는법
  - docker exec -i -t (docker names) //bin/bash
+ - docker exec -it (docker names) /bin/bash <- 이렇게 해도 됨.
 
 3. redis 프로세스에 접근
  - 정말 기본적인 프로그램만 설치되어 있으므로 하나하나 찾아야함.
@@ -103,4 +106,25 @@ docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
  - redis-cli (redis 클라이언트) ping 치면 pong이 나옴
  172.17.0.2      77081c0c81c3
 
+---
+2020.01.07 (TUE)
+* docker 공부 (mysql 설치)
+1. mysql 설치
+ - docker run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true --name mysql mysql:5.7
+ - mysql -h127.0.0.1 -uroot (클라이언트 실행해서 접속)
+ - show databases;
+ - 일단 클라이언트가 없기 때문에 확인은 못함. (서버의 /usr/bin에 있었음)
+ - (wordpress용 테이블 생성)
+   mysql -h127.0.0.1 -uroot
+   create database wp CHARACTER SET utf8;
+   grant all privileges on wp.* to wp@'%' identified by 'wp';
+   flush privileges;
+   quit
  
+2. wordpress
+ - docker run -d -p 8080:80 --link mysql:mysql -e WORDPRESS_DB_HOST=mysql -e WORDPRESS_DB_NAME=wp -e WORDPRESS_DB_USER=wp -e WORDPRESS_DB_PASSWORD=wp wordpress
+ - 웹브라우저 localhost로 실행하면 됨.
+
+* 줄이 길경우 \ 로 나눠서 입력해도됨.
+
+3. linux 에서 export치면 환경변수 확인가능
