@@ -128,3 +128,15 @@ docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
 * 줄이 길경우 \ 로 나눠서 입력해도됨.
 
 3. linux 에서 export치면 환경변수 확인가능
+---
+2020.01.08 (THU)
+* docker 공부 (mysql tomcat 설치해서 웹프로그램 실행테스트)
+1. 공부 방향
+ 1) docker mysql 설치
+ 2) docker tomcat 설치
+ 3) 간단한 웹프로그램 만들어서 war로 배포해서 테스트
+
+https://m.blog.naver.com/PostView.nhn?blogId=codingspecialist&logNo=221322481487&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+
+* 위에 테스트전 스프링부트로 되어있는 developProject를 테스트 삼아 docker 빌드해서 실행해보기
+https://imasoftwareengineer.tistory.com/40
