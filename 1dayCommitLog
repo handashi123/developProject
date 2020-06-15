@@ -1,17 +1,17 @@
 ---
-2020.01.01 (wed)
+2020.01.01 (wed) - 1
 * 1일 1커밋 시작
 오늘부터 아무거라도 올려서 1일 1커밋 해보자.
 일단 오늘은 시작 일지 만들어서 올림.
 
 ---
-2020.01.02 (thu)
+2020.01.02 (thu) - 2
 * 앞으로 공부해야 될 목록
 1. docker
 2. linux 설치후 웹프로젝트 기동
 3. 하나씩 붙여보자
 ---
-2020.01.03 (fri)
+2020.01.03 (fri) - 3
 * docker 설치
 1. docker
  - 설치
@@ -48,7 +48,7 @@ han@DESKTOP-ECMOM50 MINGW64 /d/Docker Toolbox
 2. 유의점
  - 설치후 종료시 vitualbox 는 자동으로 꺼지지 않으므로 동작하는 os를 멈춰주어야 한다.
 ---
-2020.01.04 (SAT)
+2020.01.04 (SAT) - 4
 * docker 실습
 https://subicura.com/2017/01/19/docker-guide-for-beginners-2.html
 
@@ -84,7 +84,7 @@ docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
  docker ps (실행중 이미지 목록)
  docker ps a (전체 이미지 목록)
 ---
-2020.01.06 (MON)
+2020.01.06 (MON) - 5
 * docker 공부
 1. docker redis 접속이 안됨. - 해결
  - redis실행은 되었는데, telnet localhost 1234 로 접속이 안됨.
@@ -107,7 +107,7 @@ docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
  172.17.0.2      77081c0c81c3
 
 ---
-2020.01.07 (TUE)
+2020.01.07 (TUE) - 6
 * docker 공부 (mysql 설치)
 1. mysql 설치
  - docker run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true --name mysql mysql:5.7
@@ -129,7 +129,7 @@ docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
 
 3. linux 에서 export치면 환경변수 확인가능
 ---
-2020.01.08 (THU)
+2020.01.08 (THU) - 7
 * docker 공부 (mysql tomcat 설치해서 웹프로그램 실행테스트)
 1. 공부 방향
  1) docker mysql 설치

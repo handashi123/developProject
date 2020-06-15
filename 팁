@@ -231,6 +231,16 @@ CONNECT BY LEVEL <= 100000
 ) AS SYS_AUTH_INFO_NM  
 
 
+------------------------------------------------------------
+넥사크로, nexacro
+1. 넥사크로 bind 걸고 나서 bind info의 appearance.value에 bind code를 걸면 코드에 알아서 매핑된다.
+------------------------------------------------------------
+문자열 자르기
+var temp = "LL0010";
+var zero = temp.substr(temp.length-4, 4); // 뒤에서 부터 4자리 자르기
+console.log(temp.substr(temp.length-4, 4));
+console.log(temp.substring(0, temp.length-4)); // 처음부터 뒤에서 4자리 자르고 남은데까지
+console.log(zero.replace(/(^0+)/, "")); // 앞에 붙은 0 없애기
 
 
 

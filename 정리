@@ -463,4 +463,8 @@ https://docs.docker.com/toolbox/toolbox_install_windows/
  - localhost/test_db 로 접속하면 기본 접속화면이 나오고, 설정한 url로 넣고 접속하면 접속된다.
 
 3. ResponseBody : 매핑된 view로 가지 않고 그대로 리턴
- 
+
+-- 20.01.29
+1. api 시 retry 처리 
+ - 요청시는 retryTemplate 으로 여러번 요청처리
+ - 응답시는 readTimeout에 대한 처리가 있어야함.
