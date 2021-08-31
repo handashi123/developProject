@@ -86,10 +86,14 @@ dependencies {
 	// 19.11.07 no restart setting
 	compile('org.springframework.boot:spring-boot-devtools')
 	
+	// 20.06.24 jsoup (java html parser)
+	compile 'org.jsoup:jsoup:1.13.1'
+	
 	//providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test'){
 		exclude group:"com.vaadin.external.google", module: "android-json"
-	}	
+	}
+		
 }
 
 //webAppDirName = 'webapp'
